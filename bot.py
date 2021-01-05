@@ -22,7 +22,7 @@ class telegram_bot():
         
     def read_token_from_config_file(self, config):
         parser = cfg.ConfigParser()
-        parser.read("D:\\Code\\Python\\task\\config.cfg")
+        parser.read("config.cfg")
         return parser.get('creds', 'token')
 
         
