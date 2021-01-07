@@ -25,6 +25,20 @@ while True:
     if updates:
         for item in updates:
             update_id = item["update_id"]
+            checkNewMember = item["message"].get("new_chat_member")
+            if checkNewMember:
+                try:
+                    firstname = str(item["message"]["new_chat_member"]["first_name"])
+                except:
+                    firstname = None
+                #pcwelcome = item["message"]["new_chat_member"]["id"]
+                pcwelcome = item["message"]["chat"]["id"]
+                #welcomepc = "Welcome {}, perkenalkan saya Chris dari tim tradingacademy.id. Thank you sudah join dalam group diskusi yang kami buat ya,\n\nINI STARTER PACK UNTUK MEMULAI PERJALANAN TRADING KAMU: \n\n1. BUAT AKUN TRADING\nNah ini daftar broker dulu, kita pakai Maxrich Group (MRG), bisa daftar melalui link ini ya bit.ly/daftarbroker\n\n(Kalau bingung, udah kita buatin stepstepnya di sini bit.ly/stepbystepbroker)\n\n2. STEP BY STEP METATRADER 4\nbit.ly/tutorialmt4\n\n3. BASIC COURSE FOREX (GRATIS)\nLangsung ke link berikut bit.ly/freecourseTA. Setelah daftar nanti akan ada 4 video yang bisa ditonton dan 7 hari pembelajaran intensif ke email yang didaftarkan ya.\n\nTINGGAL DIIKUTIN SAJA STEP BY STEPNYA SUDAH BISA MULAI TRADING. Kalau ada apa apa, tinggal kontak saya di nomer 0812 1999 5380 (https://wa.me/message/QYUL4XNXA7NXK1) ini ya.\n\nLet the profit be with you 😊\nSalam tradingacademy.id".format(firstname)
+                welcomepc = "Hi {}, welcome to this official group discussion dari tradingacademy.id! Kalo butuh apa apa, kamu bisa langsung ke @chris_tradingacademyid ya 😊".format(firstname)
+                bot.send_message(welcomepc, pcwelcome)
+            else:
+                firstname = None
+                
             if item["message"]["chat"]["id"] is not None:
                 try:
                     message = str(item["message"]["text"])
